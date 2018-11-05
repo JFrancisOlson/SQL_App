@@ -113,7 +113,7 @@ def calc_temps_start():
     start_date = '2016-08-23' #'2015-02-28'
    
     # Returns TMIN, TAVG, and TMAX for a list of dates.
-    results = session5.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start_date).all()
+    results = session5.query(measurement.date,func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start_date).all()
 
     #print(calc_temps('2017-01-03', '2017-01-14'))
     return jsonify(results)
@@ -132,7 +132,7 @@ def calc_temps():
     #query_end_date = dt.date(str(end_date) - dt.timedelta(days=365)
 
     # Returns TMIN, TAVG, and TMAX for a list of dates.
-    results = session6.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+    results = session6.query(measurement.date,func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
 
     print(calc_temps('2017-01-03', '2017-01-14'))
     return fjsonify(results)
